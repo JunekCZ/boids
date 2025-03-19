@@ -1,0 +1,4 @@
+pygame
+scipy
+e-pyquadtree
+pygame_gui
