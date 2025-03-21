@@ -3,11 +3,11 @@ import pygame_gui
 from config import WIDTH, COHESION_FACTOR, ALIGNMENT_FACTOR, SEPARATION_FACTOR, SEPARATION_DISTANCE, VISION_RADIUS
 
 class UIManager:
-    def __init__(self, manager):
+    def __init__(self, manager, use_quadtree):
         self.manager = manager
-        self.create_sliders()
+        self.create_sliders(use_quadtree)
 
-    def create_sliders(self):
+    def create_sliders(self, use_quadtree):
         self.cohesion_label = pygame_gui.elements.UILabel(
             relative_rect=pygame.Rect((WIDTH + 10, 10), (180, 30)),
             text="Cohesion",
@@ -68,6 +68,12 @@ class UIManager:
             manager=self.manager
         )
 
+        self.mode_label = pygame_gui.elements.UILabel(
+            relative_rect=pygame.Rect((WIDTH + 10, 360), (180, 30)),
+            text="Mode: " + ("Quadtree" if use_quadtree else "Brute force"),
+            manager=self.manager
+        )
+
     def handle_events(self, event):
         if event.type == pygame.USEREVENT:
             if event.user_type == pygame_gui.UI_HORIZONTAL_SLIDER_MOVED:
@@ -82,3 +88,6 @@ class UIManager:
                 if event.ui_element == self.separation_distance_slider:
                     return "separation_distance", event.value
         return None
+
+    def update_mode_label(self, use_quadtree):
+        self.mode_label.set_text("Mode: " + ("Quadtree" if use_quadtree else "Brute force"))
