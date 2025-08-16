@@ -5,4 +5,6 @@ boids_simulation/
 │── quadtree.py      # QuadTree – optimalizace vyhledávání blízkých boidů
 │── config.py        # Konfigurace (počet boidů, rychlosti, síly, barvy)
 │── ui.py            # GUI – posuvníky (cohesion factor, počet boidů)
+│── benchmark.py     # Generování měření
+│── results.py       # Zobrazování naměřených výsledků
 ```
